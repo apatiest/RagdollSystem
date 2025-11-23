@@ -1,6 +1,6 @@
--- Create a folder under ReplicatedStorage and call it "Remotes" then place it under
+-- Create a folder under ReplicatedStorage and call it "Remotes" then create a remote instance called "GettingUp"
 
--- Must be a ServerScript
+-- Must be a ServerScript and placed under serverscriptservice
 
 local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -44,4 +44,5 @@ end)
 
 Players.PlayerRemoving:Connect(function(Player)
 	Active[Player] = nil
+
 end)
