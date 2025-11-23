@@ -1,0 +1,2 @@
+After setting the ragdoll system, you will be able to enable and disable ragdoll of a player by changing its character ragdoll attribute boolean.
+To add a ragdoll cooldown until the player can get up add a attribute to the character as displayed "Character:SetAttribute("Cooldown",how much you want the cooldown to be)".
