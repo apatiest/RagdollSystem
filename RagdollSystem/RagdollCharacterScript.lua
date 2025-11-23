@@ -1,9 +1,10 @@
 -- Put this in StarterCharacterScripts
 
+-- Must be a serverscript
+
 local ServerStorage = game:GetService("ServerStorage")
 local Modules = ServerStorage:WaitForChild("Modules")
 local Ragdoll = require(Modules:WaitForChild("Ragdoll"))
-local PickUpPlayers = require(Modules:WaitForChild("PickUpPlayers"))
 
 local Character = script.Parent
 
