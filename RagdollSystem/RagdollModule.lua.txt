@@ -1,4 +1,4 @@
--- Create a folder under ServerStorage called "Modules" and place it under
+-- Create a folder under ServerStorage called "Modules" and place it under, rename the module to "Ragdoll"
 
 local Players = game:GetService("Players")
 local PhysicsService = game:GetService("PhysicsService")
@@ -99,3 +99,4 @@ end
 
 
 return module
+
