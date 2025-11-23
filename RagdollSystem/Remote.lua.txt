@@ -1,0 +1,47 @@
+-- Create a folder under ReplicatedStorage and call it "Remotes" then place it under
+
+-- Must be a ServerScript
+
+local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerStorage = game:GetService("ServerStorage")
+local Fun = ServerStorage:WaitForChild("Fun")
+local Players = game:GetService("Players")
+local Remotes = ReplicatedStorage:WaitForChild("Remotes")
+local GettingUp = Remotes:WaitForChild("GettingUp")
+local Buy = Remotes:WaitForChild("Buy")
+
+local Active = {}
+
+GettingUp.OnServerEvent:Connect(function(Player)
+	if Active[Player] then return end
+	Active[Player] = true
+	local Character = Player.Character or Player.CharacterAdded:Wait()
+	local Ragdoll = Character:GetAttribute("Ragdoll")
+	if not Ragdoll then
+		Active[Player] = nil
+		return
+	end
+	if not Character then 
+		Active[Player] = nil
+		return
+	end
+	local Cooldown = Character:GetAttribute("Cooldown")
+	if not Cooldown then
+		Active[Player] = nil
+		Character:SetAttribute("Ragdoll", false)
+		return
+	end
+	
+	
+	task.delay(Cooldown, function()
+		Character:SetAttribute("Ragdoll", false)
+		Active[Player] = nil
+	end)
+    
+end)
+
+
+Players.PlayerRemoving:Connect(function(Player)
+	Active[Player] = nil
+end)
