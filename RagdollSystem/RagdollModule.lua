@@ -69,7 +69,6 @@ function module.EnableRagdoll(Character)
 			v.CollisionGroup = "RagdollParts"
 		end
 	end
-	Humanoid.AutoRotate = false
 end
 
 local function ResetVelocity(Part)
@@ -81,30 +80,22 @@ end
 function module.DisableRagdoll(Character)
 	local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 	local Humanoid = Character:WaitForChild("Humanoid")
-	ResetVelocity(HumanoidRootPart)
 	HumanoidRootPart.Anchored = true
+	ResetVelocity(HumanoidRootPart)
 	for index,joint in pairs(Character:GetDescendants()) do
-		
+
 		if joint:IsA("Motor6D") then
-			joint.Enabled = true
 			ResetVelocity(joint.Part1)
-		end
-		
-		if joint.Name == "BallSocketConstraint" then
-			joint:Destroy()
-		end
-		if joint.Name == "Attachment" then
-			joint:Destroy()
-		end
-		if joint.Name == "Collision" then
-			joint:Destroy()
+			joint.Enabled = true
 		end
 
+		if joint.Name == "BallSocketConstraint" or joint.Name == "Attachment" or joint.Name == "Collision" then
+			joint:Destroy()
+		end
 	end
 	Humanoid.PlatformStand = false
 	Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
-	Humanoid.AutoRotate = true
-	task.wait(0.1)
+	task.wait(0.03)
 	HumanoidRootPart.Anchored = false
 end
 
