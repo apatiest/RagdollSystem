@@ -97,6 +97,7 @@ function module.DisableRagdoll(Character)
 	Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
 	task.wait(0.01)
 	HumanoidRootPart.Anchored = false
+	ResetVelocity(HumanoidRootPart)
 end
 
 
